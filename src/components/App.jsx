@@ -7,6 +7,9 @@ import { Route, Routes } from 'react-router-dom';
 
 import NotFound from 'Pages/NotFound';
 import AppBar from './AppBar/AppBar';
+import localStorage from 'redux-persist/es/storage';
+import { getAuth } from 'Redux/Auth/auth-operations';
+import UserMenu from './UserMenu';
 
 
 const LazyHomePage = lazy(() => import('../Pages/HomePage'))
@@ -15,8 +18,15 @@ const LazyLoginPage = lazy(() => import('../Pages/LoginPage'));
 const LazyRegistorPage = lazy(() => import('../Pages/RegistorPage'));
 
 export const App = () => {
-  
+   const user = useSelector(state => state.auth.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!localStorage.getItem('token')) return;
+    dispatch(getAuth());
+    // eslint-disable-next-line
+  }, []);
+
   
   useEffect(() => {
     dispatch(fetchContacts());
@@ -35,6 +45,8 @@ export const App = () => {
         color: '#010101',
       }}
     >
+      {!!user ? < UserMenu /> : <p>Ви не авторизувались</p>}
+      
       <AppBar />
       <Suspense>
         <Routes>
