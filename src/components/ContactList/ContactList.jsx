@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'Redux/Contacts/operations';
-
+import BasicExample from '../Spiner/Spiner'; 
 import { Li, BtnOnDelete } from './ContactList.styled';
 
 const ContactList = () => {
-  const contacts = useSelector(state => state.contacts.contacts.items);
+  const { contacts, isLoading, error } = useSelector(state => state.contacts);
   const filter = useSelector(state => state.filter.filter);
   const dispatch = useDispatch();
   const filteredContact = () => {
@@ -14,12 +14,14 @@ const ContactList = () => {
     });
   };
 
-  const onDelete = (id) => {
-    const contactId = id;
-    dispatch(deleteContact(contactId));
+  const onDelete = (contactId) => {
+  
+  dispatch(deleteContact(contactId));
   };
   return (
     <ul>
+      {error && <p>Вибачте, виникла помилка {error}</p>}
+      {isLoading && <BasicExample />}
       {filteredContact().map(({ id, name, number }) => {
         return (
           <Li key={id}>

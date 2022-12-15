@@ -15,7 +15,7 @@ const Filter = () => {
 
   return (
     <FilterContainer>
-      <span>Find contacts by name</span>
+      <span>Пошук за ім'ям:</span>
       <Input
         type="text"
         name="filter"

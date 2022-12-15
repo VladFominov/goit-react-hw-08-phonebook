@@ -2,11 +2,20 @@ import BorderExample from '../components/Spiner/Spiner';
 
 import ContactList from '../components/ContactList/ContactList';
 import Filter from '../components/Filter/Filter';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import  Form  from '../components/Form/Form';
+import React, { useEffect } from 'react';
+import { getContacts } from 'Redux/Contacts/operations';
+import WithAuthRedirect from 'HOC/WithAuthRiderect';
 
-function Contacts() {
-  const { isLoading } = useSelector(state => state.contacts.contacts);
+function ContactsPage() {
+  const {isLoading } = useSelector(state => state.contacts);
+  const dispatch = useDispatch();
+  useEffect 
+    (() => {
+      dispatch(getContacts());
+    },
+    [dispatch]);
   return (
     <div>
       <h1>Книга контактів</h1>
@@ -19,4 +28,4 @@ function Contacts() {
     </div>
   );
 }
-export default Contacts;
+export default WithAuthRedirect(ContactsPage, '/login');

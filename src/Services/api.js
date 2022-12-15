@@ -16,6 +16,7 @@ const $privateHost = axios.create({
 
 const authInterceptor = config => {
   config.headers['Authorization'] = localStorage.getItem('token');
+  return config
 };
 
 $privateHost.interceptors.request.use(authInterceptor);
@@ -41,26 +42,21 @@ export const getContactsRequest = async () => {
   return data;
 };
 
+export const addContactsRequest = async (contact) => {
+  const { data } = await $privateHost.post('/contacts', contact);
+  return data;
+};
+
+
+export const deleteContactsRequest = async contactId => {
+  const { data } = await $privateHost.delete(`/contacts/${contactId}`);
+  return data;
+};
+
+export const logOutRequest = async () => {
+  const { data } = await $privateHost.post('/users/logout');
+  return data;
+};
 // -------------------------------------------
 
-export const fetchAllContacts = async () => {
-  const { data } = await axios.get(
-    `https://639596f590ac47c6806e69f2.mockapi.io/contacts`
-  );
-  return data;
-};
 
-export const addNewContactToBook = async contact => {
-  const { data } = await axios.post(
-    `https://639596f590ac47c6806e69f2.mockapi.io/contacts/`,
-    contact
-  );
-  return data;
-};
-
-export const deleteContactFromBook = async contactId => {
-  const { data } = await axios.delete(
-    `https://639596f590ac47c6806e69f2.mockapi.io/contacts/${contactId}`
-  );
-  return data;
-};

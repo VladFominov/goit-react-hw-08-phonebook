@@ -1,13 +1,13 @@
 import React, { lazy, useEffect } from 'react';
 import {  useDispatch, useSelector} from 'react-redux';
-import { fetchContacts } from 'Redux/Contacts/operations';
+
 
 import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import NotFound from 'Pages/NotFound';
 import AppBar from './AppBar/AppBar';
-import localStorage from 'redux-persist/es/storage';
+
 import { getAuth } from 'Redux/Auth/auth-operations';
 import UserMenu from './UserMenu';
 
@@ -24,14 +24,10 @@ export const App = () => {
   useEffect(() => {
     if (!localStorage.getItem('token')) return;
     dispatch(getAuth());
-    // eslint-disable-next-line
-  }, []);
+  }, [dispatch]);
 
   
-  useEffect(() => {
-    dispatch(fetchContacts());
-   }, [dispatch]);
- 
+
 
   return (
     <div
@@ -50,6 +46,7 @@ export const App = () => {
       <AppBar />
       <Suspense>
         <Routes>
+          
           <Route path="/" element={<LazyHomePage />}></Route>
           <Route path="/register" element={<LazyRegistorPage />}></Route>
           <Route path="/login" element={<LazyLoginPage />}></Route>
