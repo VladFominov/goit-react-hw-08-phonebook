@@ -3,7 +3,7 @@ import {  useDispatch, useSelector} from 'react-redux';
 
 
 import { Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, } from 'react-router-dom';
 
 import NotFound from 'Pages/NotFound';
 import AppBar from './AppBar/AppBar';
@@ -41,12 +41,11 @@ export const App = () => {
         color: '#010101',
       }}
     >
-      {user?.token ? < UserMenu /> : <p>Ви не авторизувались</p>}
-      
+      {user?.token ? <UserMenu /> : <p>Ви не авторизувались</p>}
+
       <AppBar />
       <Suspense>
-        <Routes>
-          
+        <Routes >
           <Route path="/" element={<LazyHomePage />}></Route>
           <Route path="/register" element={<LazyRegistorPage />}></Route>
           <Route path="/login" element={<LazyLoginPage />}></Route>

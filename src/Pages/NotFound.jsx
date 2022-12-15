@@ -1,7 +1,7 @@
 function NotFound() {
     return (
       <>
-        <p>Sorry, this page does not exist</p>
+        <p>Вибачте, такої сторінки немає</p>
       </>
     );
 }
