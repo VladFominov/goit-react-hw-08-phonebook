@@ -45,8 +45,11 @@ export const App = () => {
 
       <AppBar />
       <Suspense>
-        <Routes >
-          <Route path="/" element={<LazyHomePage />}></Route>
+        <Routes>
+          <Route
+            path="/"
+            element={<LazyHomePage />}
+          ></Route>
           <Route path="/register" element={<LazyRegistorPage />}></Route>
           <Route path="/login" element={<LazyLoginPage />}></Route>
           <Route path="/contacts" element={<LazyContactsPage />}></Route>

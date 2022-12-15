@@ -9,7 +9,7 @@ const AppBar = () => {
         <nav>
           {isUserLoggedIn ?  <StyledNavLink to="/contacts">Контакти</StyledNavLink> :
             <>
-              <StyledNavLink to="/home">Головна</StyledNavLink>
+              <StyledNavLink to="/">Головна</StyledNavLink>
               <StyledNavLink to="/register">Регістрація</StyledNavLink>
               <StyledNavLink to="/login">Логін</StyledNavLink>
             </>
