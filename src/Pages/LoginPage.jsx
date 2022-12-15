@@ -11,15 +11,15 @@ function LogInForm() {
     password: '',
   });
 
-  const { user, isLoading, error } = useSelector(state => state.auth);
+  const { user, error } = useSelector(state => state.auth);
 
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!user) return;
-    navigate('/contacts');
+    if (user?.token) navigate('/contacts');
+    
   }, [user, navigate]);
 
   const onChange = e => {
@@ -37,7 +37,7 @@ function LogInForm() {
       email: formData.email,
       password: formData.password,
     };
-    console.log('finalData: ', finalData);
+    
     dispatch(signIn(finalData));
 
     reset();
@@ -68,7 +68,7 @@ function LogInForm() {
             placeholder="введіть пароль"
           />
         </label>
-        <SubmitBtn type="submit" disabled={isLoading}>
+        <SubmitBtn type="submit">
           Увійти
         </SubmitBtn>
       </Form>

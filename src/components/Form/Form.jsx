@@ -39,7 +39,7 @@ const Form = () => {
       name: formData.name,
       number: formData.number,
     };
-    console.log(contact)
+    
     dispatch(addContact(contact));
     reset();
   };

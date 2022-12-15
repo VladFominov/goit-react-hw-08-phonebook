@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { signUp } from 'Redux/Auth/auth-operations';
 import { SubmitBtn, Form, Input } from './styled';
 
+
 function SignUpForm() {
   const [formData, setFormData] = useState({
     name: "",
@@ -11,14 +12,14 @@ function SignUpForm() {
     password: "",
   });
 
-  const { user, isLoading, error } = useSelector(state => state.auth);
+  const { user, error } = useSelector(state => state.auth);
 
   const dispatch = useDispatch()
   const navigate = useNavigate();
   
    useEffect(() => {
-     if (!user) return;
-     navigate('/contacts');
+     if (user?.token) navigate('/contacts');
+     ;
    }, [user, navigate]);
 
   const onChange = e => {
@@ -37,7 +38,7 @@ function SignUpForm() {
       email: formData.email,
       password: formData.password,
     };
-    console.log('finalData: ', finalData);
+   
 dispatch(signUp(finalData));
 
     reset();
@@ -77,7 +78,7 @@ dispatch(signUp(finalData));
             placeholder="введіть пароль"
           />
         </label>
-        <SubmitBtn type="submit" disabled={isLoading}>
+        <SubmitBtn type="submit">
           Підтвердити
         </SubmitBtn>
       </Form>

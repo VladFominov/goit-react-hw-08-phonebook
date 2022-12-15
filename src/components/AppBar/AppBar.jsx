@@ -3,7 +3,7 @@ import { StyledNavLink } from "./AppBar.styled";
 
 const AppBar = () => {
   const user = useSelector(state => state.auth.user);
-  const isUserLoggedIn = Boolean(user?.user);
+  const isUserLoggedIn = Boolean(user?.token);
     return (
       <header>
         <nav>

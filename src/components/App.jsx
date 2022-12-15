@@ -41,7 +41,7 @@ export const App = () => {
         color: '#010101',
       }}
     >
-      {!!user ? < UserMenu /> : <p>Ви не авторизувались</p>}
+      {user?.token ? < UserMenu /> : <p>Ви не авторизувались</p>}
       
       <AppBar />
       <Suspense>

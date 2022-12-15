@@ -10,11 +10,11 @@ import {
 export const signUp = createAsyncThunk(
   'user/signUp',
   async (formData, thunkApi) => {
-    console.log(formData);
+   
     try {
       const userData = await signUpRequest(formData);
       userData?.token && localStorage.setItem('token', userData.token);
-      // console.log(userData);
+      console.log(userData);
       return userData;
     } catch (err) {
       return thunkApi.rejectWithValue(err);

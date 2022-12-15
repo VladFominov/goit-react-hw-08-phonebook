@@ -6,16 +6,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import  Form  from '../components/Form/Form';
 import React, { useEffect } from 'react';
 import { getContacts } from 'Redux/Contacts/operations';
-import WithAuthRedirect from 'HOC/WithAuthRiderect';
+import WithAuthRedirect from '../HOC/WithAuthRiderect';
 
 function ContactsPage() {
-  const {isLoading } = useSelector(state => state.contacts);
+  const { isLoading } = useSelector(state => state.contacts);
+   const user = useSelector(state => state.auth.user);
   const dispatch = useDispatch();
   useEffect 
     (() => {
-      dispatch(getContacts());
+       if (user?.token) dispatch(getContacts());
     },
-    [dispatch]);
+    [user, dispatch]);
   return (
     <div>
       <h1>Книга контактів</h1>

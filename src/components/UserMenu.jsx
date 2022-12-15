@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { logOut } from 'Redux/Auth/auth-operations';
 
 function UserMenu() {
-  const user = useSelector(state => state.auth.user.user);
+  const user = useSelector(state => state.auth.user?.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
