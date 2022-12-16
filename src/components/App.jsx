@@ -1,5 +1,5 @@
 import React, { lazy, useEffect } from 'react';
-import {  useDispatch, useSelector} from 'react-redux';
+import {  useDispatch} from 'react-redux';
 
 
 import { Suspense } from 'react';
@@ -19,8 +19,8 @@ const LazyLoginPage = lazy(() => import('../Pages/LoginPage'));
 const LazyRegistorPage = lazy(() => import('../Pages/RegistorPage'));
 
 export const App = () => {
-  const user = useSelector(state => state.auth.user);
-  const isUserLoggedIn = Boolean(user);
+  // const user = useSelector(state => state.auth.user);
+  // const isUserLoggedIn = Boolean(user);
   const dispatch = useDispatch();
 const token = localStorage.getItem('token');
   useEffect(() => {

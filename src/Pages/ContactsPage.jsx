@@ -2,10 +2,10 @@ import BorderExample from '../components/Spiner/Spiner';
 
 import ContactList from '../components/ContactList/ContactList';
 import Filter from '../components/Filter/Filter';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import  Form  from '../components/Form/Form';
-import React, { useEffect } from 'react';
-import { getContacts } from 'Redux/Contacts/operations';
+// import React, { useEffect } from 'react';
+// import { getContacts } from 'Redux/Contacts/operations';
 import WithAuthRedirect from '../HOC/WithAuthRiderect';
 
 function ContactsPage() {
