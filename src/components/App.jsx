@@ -1,44 +1,16 @@
-import React, { lazy, useEffect } from 'react';
-import {  useDispatch} from 'react-redux';
-
+import React, { lazy } from 'react';
 
 import { Suspense } from 'react';
-import { Route, Routes, } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import NotFound from 'Pages/NotFound';
-import AppBar from './AppBar/AppBar';
 
-import { getAuth } from 'Redux/Auth/auth-operations';
-import UserMenu from './UserMenu';
-import { getContacts } from 'Redux/Contacts/operations';
-
-
-const LazyHomePage = lazy(() => import('../Pages/HomePage'))
+const LazyHomePage = lazy(() => import('../Pages/HomePage'));
 const LazyContactsPage = lazy(() => import('../Pages/ContactsPage'));
 const LazyLoginPage = lazy(() => import('../Pages/LoginPage'));
 const LazyRegistorPage = lazy(() => import('../Pages/RegistorPage'));
 
 export const App = () => {
-  // const user = useSelector(state => state.auth.user);
-  // const isUserLoggedIn = Boolean(user);
-  const dispatch = useDispatch();
-const token = localStorage.getItem('token');
-  useEffect(() => {
-    if (!localStorage.getItem('token')) return;
-    dispatch(getAuth());
-    
-  }, [dispatch]);
-  //  const dispatch = useDispatch();
-  //  const token = localStorage.getItem('token');
-
-   useEffect(() => {
-     if (token) dispatch(getContacts());
-     console.log(token);
-   }, [dispatch, token]);
-
-  
-
-
   return (
     <div
       style={{
@@ -51,9 +23,6 @@ const token = localStorage.getItem('token');
         color: '#010101',
       }}
     >
-      {token? <UserMenu /> : <p>Ви не авторизувались</p>}
-      {/* user?.token */}
-      <AppBar />
       <Suspense>
         <Routes>
           <Route path="/" element={<LazyHomePage />}></Route>
@@ -66,4 +35,3 @@ const token = localStorage.getItem('token');
     </div>
   );
 };
-// export default App;

@@ -14,7 +14,7 @@ export const signUp = createAsyncThunk(
     try {
       const userData = await signUpRequest(formData);
       userData?.token && localStorage.setItem('token', userData.token);
-      console.log(userData);
+      
       return userData;
     } catch (err) {
       return thunkApi.rejectWithValue(err);
@@ -38,7 +38,7 @@ export const signIn = createAsyncThunk(
 export const getAuth = createAsyncThunk('user/getAuth', async (_, thunkApi) => {
   try {
     const userData = await getAuthRequest();
-    console.log('userData: ', userData);
+    
 
     return userData;
   } catch (err) {

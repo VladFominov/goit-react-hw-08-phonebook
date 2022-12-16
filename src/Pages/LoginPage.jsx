@@ -1,4 +1,6 @@
 // import { isDisabled } from '@testing-library/user-event/dist/utils';
+import AppBar from 'components/AppBar/AppBar';
+import UserMenu from 'components/UserMenu';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -51,36 +53,40 @@ function LogInForm() {
   const reset = () => {
     setFormData({email: '', password: '' });
   };
-
+const token = localStorage.getItem('token');
   return (
-    <Wrapper>
-      <Form onSubmit={onSubmit}>
-        <label>
-          <Input
-            onChange={onChange}
-            name="email"
-            value={formData.email}
-            type="email"
-            placeholder="введіть пошту"
-          />
-        </label>
-        <label>
-          <InputPassWrapper>
+    <>
+      <AppBar />
+      {token ? <UserMenu /> : <p>Ви не авторизувались</p>}
+      <Wrapper>
+        <Form onSubmit={onSubmit}>
+          <label>
             <Input
               onChange={onChange}
-              name="password"
-              value={formData.password}
-              type={show ? 'text' : 'password'}
-              placeholder="введіть пароль"
+              name="email"
+              value={formData.email}
+              type="email"
+              placeholder="введіть пошту"
             />
-            <Label onClick={handleShowTaggle}>{show ? 'Hide' : 'Show'}</Label>
-          </InputPassWrapper>
-        </label>
+          </label>
+          <label>
+            <InputPassWrapper>
+              <Input
+                onChange={onChange}
+                name="password"
+                value={formData.password}
+                type={show ? 'text' : 'password'}
+                placeholder="введіть пароль"
+              />
+              <Label onClick={handleShowTaggle}>{show ? 'Hide' : 'Show'}</Label>
+            </InputPassWrapper>
+          </label>
 
-        <SubmitBtn type="submit">Увійти</SubmitBtn>
-      </Form>
-      {error.length > 0 && <p>Вибачте, виникла помилка</p>}
-    </Wrapper>
+          <SubmitBtn type="submit">Увійти</SubmitBtn>
+        </Form>
+        {error.length > 0 && <p>Вибачте, виникла помилка</p>}
+      </Wrapper>
+    </>
   );
 }
 export default LogInForm;

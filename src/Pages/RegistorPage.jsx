@@ -1,3 +1,5 @@
+import AppBar from 'components/AppBar/AppBar';
+import UserMenu from 'components/UserMenu';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -52,9 +54,11 @@ dispatch(signUp(finalData));
   const reset = () => {
     setFormData({ name: '', email: '', password: '' });
   };
-
+const token = localStorage.getItem('token');
   return (
     <div>
+      <AppBar />
+      {token ? <UserMenu /> : <p>Ви не авторизувались</p>}
       <Form onSubmit={onSubmit}>
         <label>
           <Input
