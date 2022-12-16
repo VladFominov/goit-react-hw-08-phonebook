@@ -2,7 +2,7 @@ import BorderExample from '../components/Spiner/Spiner';
 
 import ContactList from '../components/ContactList/ContactList';
 import Filter from '../components/Filter/Filter';
-import {  useSelector } from 'react-redux';
+import {  useDispatch, useSelector } from 'react-redux';
 import  Form  from '../components/Form/Form';
 // import React, { useEffect } from 'react';
 // import { getContacts } from 'Redux/Contacts/operations';
@@ -10,6 +10,8 @@ import WithAuthRedirect from '../HOC/WithAuthRiderect';
 import { getAuth } from 'Redux/Auth/auth-operations';
 import UserMenu from 'components/UserMenu';
 import AppBar from 'components/AppBar/AppBar';
+import { useEffect } from 'react';
+import { getContacts } from 'Redux/Contacts/operations';
 
 function ContactsPage() {
   const { isLoading } = useSelector(state => state.contacts);
