@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logOut } from 'Redux/Auth/auth-operations';
+import { BtnOnDelete } from './ContactList/ContactList.styled';
 
 function UserMenu() {
   const user = useSelector(state => state.auth.user?.user);
@@ -22,9 +23,9 @@ function UserMenu() {
       <p>
         Email:<b> {user?.email}</b>
       </p>
-      <button type="button" onClick={onLogOut}>
+      <BtnOnDelete type="button" onClick={onLogOut}>
         Вийти
-      </button>
+      </BtnOnDelete>
     </div>
   );
 }

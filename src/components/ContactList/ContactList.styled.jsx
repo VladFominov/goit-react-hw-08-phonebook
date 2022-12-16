@@ -19,9 +19,7 @@ export const BtnOnDelete = styled.button`
     border-radius: 10px;
     background: cadetblue;
   }
-  .DeleteForeverIcon = {
-    font-size: 30px;
-  }
+
 `;
 
 export const DeleteForeverIcon = styled.svg`

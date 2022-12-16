@@ -5,8 +5,7 @@ const initialState = {
   user: null,
   isLoading: false,
   error: '',
-  // token: null,
-  // isLoggedIn: false,
+
 };
 
 const authSlice = createSlice({
@@ -19,7 +18,8 @@ const authSlice = createSlice({
     });
 
     builder.addCase(signUp.fulfilled, (state, action) => {
-      state.auth.user = action.payload;
+      // state.auth.user = action.payload;
+      state.user = action.payload;
       state.isLoading = false;
     });
 
@@ -47,7 +47,8 @@ const authSlice = createSlice({
         state.error = '';
       });
 
-      builder.addCase(getAuth.fulfilled, (state, action) => {
+    builder.addCase(getAuth.fulfilled, (state, action) => {
+    
         state.user = { user: action.payload };
         state.isLoading = false;
       });

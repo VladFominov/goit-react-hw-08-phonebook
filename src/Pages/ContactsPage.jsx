@@ -10,13 +10,8 @@ import WithAuthRedirect from '../HOC/WithAuthRiderect';
 
 function ContactsPage() {
   const { isLoading } = useSelector(state => state.contacts);
-   const user = useSelector(state => state.auth.user);
-  const dispatch = useDispatch();
-  useEffect 
-    (() => {
-       if (user?.token) dispatch(getContacts());
-    },
-    [user, dispatch]);
+  //  const user = useSelector(state => state.auth.user);
+ 
   return (
     <div>
       <h1>Книга контактів</h1>

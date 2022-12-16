@@ -10,10 +10,27 @@ export const Form = styled.form`
   gap: 20px;
 `;
 
-export const Input = styled.input`
+export const InputPassWrapper = styled.div`
+  position: relative;
   border-radius: 15px;
   box-sizing: border-box;
   cursor: pointer;
+  outline: none;
+`;
+
+export const Label = styled.label`
+  position: absolute;
+  font-size: 25px;
+  right: 3%;
+  top: 20%;
+  cursor: pointer;
+`;
+
+
+export const Input = styled.input`
+  border-radius: 15px;
+  box-sizing: border-box;
+  // cursor: pointer;
   outline: none;
 
 `;

@@ -4,8 +4,10 @@ import { Navigate } from 'react-router-dom'
 
 function WithAuthRedirect(Component, RiderectTo) {
     const ComponentWithRedirect = props => {
-        const user = useSelector(state => state.auth.user)
-        return Boolean(user?.token) ? (
+      const user = useSelector(state => state.auth.user)
+      const token = localStorage.getItem('token')
+        console.log(user?.token);
+        return Boolean(token) ? (
           <Component {...props} />
         ) : (
           <Navigate to={RiderectTo} />

@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signIn } from 'Redux/Auth/auth-operations';
-import { SubmitBtn, Form, Input, Wrapper } from './styled';
+import { SubmitBtn, Form, Input, Wrapper, Label, InputPassWrapper } from './styled';
 
 function LogInForm() {
+  const [show, setShow] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -21,6 +22,10 @@ function LogInForm() {
     if (user?.token) navigate('/contacts');
     
   }, [user, navigate]);
+
+  const handleShowTaggle = () => {
+    setShow(!show)
+  }
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -60,17 +65,19 @@ function LogInForm() {
           />
         </label>
         <label>
-          <Input
-            onChange={onChange}
-            name="password"
-            value={formData.password}
-            type="text"
-            placeholder="введіть пароль"
-          />
+          <InputPassWrapper>
+            <Input
+              onChange={onChange}
+              name="password"
+              value={formData.password}
+              type={show ? 'text' : 'password'}
+              placeholder="введіть пароль"
+            />
+            <Label onClick={handleShowTaggle}>{show ? 'Hide' : 'Show'}</Label>
+          </InputPassWrapper>
         </label>
-        <SubmitBtn type="submit">
-          Увійти
-        </SubmitBtn>
+
+        <SubmitBtn type="submit">Увійти</SubmitBtn>
       </Form>
       {error.length > 0 && <p>Вибачте, виникла помилка</p>}
     </Wrapper>

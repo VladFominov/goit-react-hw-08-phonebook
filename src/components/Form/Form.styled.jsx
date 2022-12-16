@@ -21,12 +21,20 @@ export const Input = styled.input`
   height: 30px;
   padding: 20px;
   font-size: 30px;
+  border-radius: 15px;
+  box-sizing: border-box;
+ 
+  outline: none;
 `;
 
 export const InputNumber = styled.input`
   height: 30px;
   padding: 20px;
   font-size: 30px;
+  border-radius: 15px;
+  box-sizing: border-box;
+ 
+  outline: none;
 `;
 
 export const Span = styled.span`

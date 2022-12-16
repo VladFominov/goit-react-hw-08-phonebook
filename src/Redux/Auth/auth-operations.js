@@ -38,6 +38,7 @@ export const signIn = createAsyncThunk(
 export const getAuth = createAsyncThunk('user/getAuth', async (_, thunkApi) => {
   try {
     const userData = await getAuthRequest();
+    console.log('userData: ', userData);
 
     return userData;
   } catch (err) {
